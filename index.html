@@ -11,10 +11,6 @@
             height: 150px;
         }
 
-        img {
-            width: 55px;
-        }
-
         .menu {
             height: 45px;
             background-color: black;
@@ -42,9 +38,7 @@
         }
 
         section {
-            margin-top: 15px;
-            font-size: 15px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif
+            margin: 0;
         }
 
         body {
@@ -52,9 +46,9 @@
         }
 
         input[type="text"] {
-            width: 200px;
-            padding: 6px;
-            font-size: 16px;
+            width: 150px;
+            padding: 5px;
+            font-size: 15px;
         }
 
         button[type="submit"] {
@@ -64,21 +58,22 @@
             width: 60px;
             padding: 5px;
             font-size: 14px;
-            font-family: initial
         }
 
         .search {
-            margin-left: 500px;
+            margin-left: 800px;
             font-size: 20px;
         }
 
         .login {
-            margin-left: 500px;
+            margin-left: 100px;
             font-size: 20px;
             font-family: Verdana, Geneva, Tahoma, sans-serif
         }
 
         input[type="id"] {
+            margin-left: 28px;
+            margin-bottom: 10px;
             width: 200px;
             height: 12px;
             padding: 6px;
@@ -103,6 +98,11 @@
             font-family: initial
         }
 
+        .gif-image {
+            width: 300px;
+            height: 300px;
+        }
+
         footer {
             text-align: center;
         }
@@ -112,12 +112,12 @@
 <body>
     <header>
         <br><br>
-        <h1><img src="/img/saint.jpg"> SAINT MERCY</h1>
+        <h1><img src="/img/saint.jpg" alt="Image 1" style="width: 55px;"> SAINT MERCY</h1>
     </header>
 
     <nav>
         <div class="menu">
-            <label>LOGIN</label>
+            <label>STORE</label>
             <label>COMMUNITY</label>
             <label>ABOUT</label>
             <label>DOWNLOAD</label>
@@ -125,24 +125,29 @@
         </div>
     </nav>
 
-    <!-- <section>
+    <section>
         <div class="search">
-            <label> Search : </label>
-            <input type="text" id="Search" placeholder="search game">
-            <button type="submit">search</button>
+            <p> Search : <input type="text" id="Search" placeholder="search game">
+                <button type="submit">search</button>
+            </p>
         </div>
     </section>
 
     <section>
         <div class="login">
             <br>
-            <label for="ID">ID :</label>
-            <input type="text" id="ID" placeholder="id"><br>
-            <label for="password">PASS :</label>
-            <input type="password" id="password" placeholder="password">
+            <form id="loginForm">
+                <p1 for="ID">ID : <input type="id" id="ID" placeholder="enter id"></p1><br>
+                <p1 for="password">PASS : <input type="password" id="password" placeholder="enter password"></p1>
+            </form>
+            <button type="login">Login</button>
         </div>
-        <button type="login">Login</button>
-    </section> -->
+    </section>
+
+        <img src="/img/change.gif" alt="Image 2" class="gif-image">
+        <img src="/img/1.gif" alt="Image 3" class="gif-image">
+        <img src="/img/u2.gif" alt="Image 4" class="gif-image">
+
 </body>
 
 </html>

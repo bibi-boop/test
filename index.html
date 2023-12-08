@@ -8,6 +8,7 @@
     <style>
         header {
             background-color: black;
+            height: 150px;
         }
 
         img {
@@ -15,16 +16,14 @@
         }
 
         .menu {
-            margin-top: 50px;
-            width: 1250px;
             height: 45px;
             background-color: black;
             text-align: center;
         }
 
-        button1 {
+        label {
             text-align: center;
-            margin-left: 30px;
+            margin-left: 55px;
             margin-right: 20px;
             background-color: black;
             color: whitesmoke;
@@ -44,7 +43,6 @@
 
         section {
             margin-top: 15px;
-            margin-left: 870px;
             font-size: 15px;
             font-family: Verdana, Geneva, Tahoma, sans-serif
         }
@@ -60,28 +58,27 @@
         }
 
         button[type="submit"] {
+            margin-left: 5px;
             background-color: black;
             color: antiquewhite;
             width: 60px;
-            padding: 6px;
+            padding: 5px;
             font-size: 14px;
             font-family: initial
         }
 
         .search {
-            margin-left: 30px;
+            margin-left: 500px;
             font-size: 20px;
         }
 
         .login {
-            margin-left: 30px;
+            margin-left: 500px;
             font-size: 20px;
             font-family: Verdana, Geneva, Tahoma, sans-serif
         }
 
         input[type="id"] {
-            margin-left: 28px;
-            margin-bottom: 7px;
             width: 200px;
             height: 12px;
             padding: 6px;
@@ -106,7 +103,7 @@
             font-family: initial
         }
 
-        footer{
+        footer {
             text-align: center;
         }
     </style>
@@ -114,38 +111,38 @@
 
 <body>
     <header>
-        <br>
+        <br><br>
         <h1><img src="/img/saint.jpg"> SAINT MERCY</h1>
-        <div class="menu">
-            <button1>STORE</button1>
-            <button1>COMMUNITY</button1>
-            <button1>ABOUT</button1>
-            <button1>DOWNLOAD</button1>
-            <button1>SUPPORT</button1>
-        </div>
     </header>
+
     <nav>
-        <section>
-            <div class="search">
-                Search : <input type="text" id="Search" placeholder="search game">
-                <button type="submit">search</button>
-            </div>
-        </section>
-
-        <section11>
-            <div class="login">
-                <label1>ID :</label1>
-                <input type="id" id="ID" placeholder="id"><br>
-                <label1>PASS :</label1>
-                <input type="password" id="password" placeholder="password">
-            </div>
-            <button type="login">Login</button>
-        </section11>
+        <div class="menu">
+            <label>LOGIN</label>
+            <label>COMMUNITY</label>
+            <label>ABOUT</label>
+            <label>DOWNLOAD</label>
+            <label>SUPPORT</label>
+        </div>
     </nav>
-    <footer>
-        개발자 : 이수민
-    </footer>
 
+    <!-- <section>
+        <div class="search">
+            <label> Search : </label>
+            <input type="text" id="Search" placeholder="search game">
+            <button type="submit">search</button>
+        </div>
+    </section>
+
+    <section>
+        <div class="login">
+            <br>
+            <label for="ID">ID :</label>
+            <input type="text" id="ID" placeholder="id"><br>
+            <label for="password">PASS :</label>
+            <input type="password" id="password" placeholder="password">
+        </div>
+        <button type="login">Login</button>
+    </section> -->
 </body>
 
 </html>

@@ -50,10 +50,6 @@
             font-family: initial
         }
 
-        .search {
-            margin-left: 20px;
-        }
-
         body {
             margin: 0;
         }
@@ -72,6 +68,27 @@
             font-size: 14px;
             font-family: initial
         }
+
+        .search {
+            margin-left: 20px;
+            font-size: 20px;
+        }
+
+        input[type="id"] {
+            margin-left: 25px;
+            width: 200px;
+            height: 12px;
+            padding: 6px;
+            font-size: 16px;
+        }
+
+        input[type="password"] {
+            width: 200px;
+            height: 12px;
+            padding: 6px;
+            font-size: 16px;
+        }
+
     </style>
 </head>
 
@@ -97,8 +114,11 @@
 
     <section11>
         <div class="search">
-            ID : <input type="id" id="ID" placeholder="ID"><br>
-            PS : <input type="password" id="password" placeholder="password">
+            <label1>ID :</label1>
+            <input type="id" id="ID" placeholder="id"><br>
+            <label1>PASS :</label1>
+            <input type="password" id="password" placeholder="password">
+            <button type="submit">Login</button>
         </div>
     </section11>
 </nav>

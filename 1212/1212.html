@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8"> <!-- encoding 설정 꼭 기억 !! euckr-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Painter</title>
+</head>
+<style>
+    #mypaint {
+        border: solid;
+    }
+</style>
+
+<body>
+    <div>
+        <canvas id="mypaint" width="500" height="500"></canvas>
+    </div>
+    <div> <!-- 색깔 선택 -->
+        <!-- name은 중복되면안됨 하지만 radio 박스로 묶으면 name이 같아야 택1이 가능하다. -->
+        <!-- name은 input 요소의 이름을 명시한다, 변수명임
+            value는 넘겨줄 값임... black이라고 무조건 black인게 아님.. -->
+        검정<input type="radio" name="color" onclick="setColor(this.value)" value="black" checked>
+        빨강<input type="radio" name="color" onclick="setColor(this.value)" value="red">
+        초록<input type="radio" name="color" onclick="setColor(this.value)" value="green">
+
+    <div> <!-- 펜의 굵기 조절 -->
+        <!--버전1 html 태그가 자바스크립트를 호출함
+        펜굵기<input type="range" name="bold" min="1" max="30" value="1" id="pansize"
+        onchange="setSize(this.value)">-->
+        <!--버전2 스크립트에서 태그의 액션을 감지하도로고 변경-->
+        펜굵기<input type="range" name="bold" min="1" max="30" value="1" id="pansize">
+    </div>
+</div>
+</body>
+
+</html>
+<script>
+    let drawPan = document.getElementById("mypaint");   // 15번 라인 가져옴. tag canvas 객체를 가져옴 ..
+    let myctx = drawPan.getContext("2d"); // 2d로 그림을 그리겠다.
+    let flag = false;
+
+    // 버전1에서 필요한 함수 정의
+    // function setSize(s) {
+    //     alert(s);
+    //     myctx.lineWidth = s;
+    // }
+
+    document.getElementById("pansize").onchange = () => {
+        let size = document.getElementById("pansize").value;
+        alert(size);
+        myctx.lineWidth = size;
+    }
+    // 마우스동작 리스너 정의 ..
+    drawPan.addEventListener('mousedown', () => {   // 람다식
+        startDraw();
+    });
+    drawPan.addEventListener('mousemove', () => {
+        moveDraw();
+    });
+    drawPan.addEventListener('mouseup', () => {
+        endDraw();
+    });
+
+    function setColor(c) {
+        myctx.strokeStyle = c;
+    }
+    function startDraw() {
+        //alert("마우스 클릭");
+        myctx.beginPath();
+        flag = true;
+    }
+
+    function moveDraw() {
+        if (flag) {
+            let e = window.event;
+            //console.log(e.clientX + "/" + e.clientY);
+            myctx.lineTo(e.clientX - 8, e.clientY - 8); // 현재 점에서 매개변수의 좌표로 이동하라
+            myctx.stroke(); //선을 그려라
+        }
+    }
+    function endDraw() {
+        flag = false;
+    }
+</script>
+
+<!-- 개발순서
+1. UI디자인 및 구현
+   기술 stack : html, css
+   주요tag(객체)는 canvas Tip: -->

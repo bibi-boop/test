@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+</head>
+
+<body>
+    <form action="to_server" method="get">
+        아이디<input type="text" name="userid" id="id" placeholder="id">
+        <!--name은 변수명-->
+        비밀번호<input type="password" name="password" id="pass" placeholder="password">
+        <input type="submit" onclick="chk()" value="Save"> <!--submit의 범위도  form태그 자식 -->
+        <!--submit은 서버에게 전송, onclick은 자바스크립트 호출-->
+        <input type="reset" value="초기화"> <!--reset의 범위는 for태그 자식의 input 객체-->
+    </form>
+    <!--
+        1. 아이디와 비밀번호와 이름을 입력할 수 있는 폼을 코딩하시오.
+        2. 유효성 체크... 현재 클라이언트가 입력된 데이터가
+            설계 단계에서 정의한 규칙과 일치하는 것인가를 판단
+            > 클라이언트 입력 > js에서 유효성 체크 > 서버전송 > 서버에서 DB 저장
+    -->
+</body>
+</html>
+
+<script>
+    function chk() {
+        alert("d");
+        //간이 테스트 먼저
+    }
+</script>

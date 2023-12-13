@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의그림판2</title>
+</head>
+<h1>그림판</h1>
+<style>
+    h1 {
+        text-align: center;
+        justify-content: center;
+        margin: 40px;
+        font-size: 40px;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    #mypaint {
+        border: solid 2px;
+    }
+
+    .active {
+        background-color: lightgray;
+        /* Change this to your preferred active state background color */
+    }
+</style>
+
+<body>
+    <div>
+        <canvas id="mypaint" width="500" height="500"></canvas>
+    </div>
+    <div>
+        색상<input type="color" name="color" onchange="setColor(this.value)" value="#000000" id="color">
+        펜굵기<input type="range" name="bold" value="1" min="1" max="20" id="pansize">
+    </div>
+    <div>
+        <button onclick="toggleShape('line')" data-shape="line">직선</button>
+        <button onclick="toggleShape('rectangle')" data-shape="rectangle">사각형</button>
+        <button onclick="toggleShape('circle')" data-shape="circle">원</button>
+    </div>
+    <div>
+        <input type="text" id="fileName" placeholder="파일명을 적어주세요">
+        <button onclick="saveImage()">Save</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let color = document.getElementById("color");
+    let drawPan = document.getElementById("mypaint");
+    let myctx = drawPan.getContext("2d");
+    let flag = false;
+    let isDrawingLine = false;
+    let isDrawingRectangle = false;
+    let isDrawingCircle = false;
+    let startX, startY, endX, endY;
+    let previewCanvas = document.createElement('canvas');
+    let previewCtx = previewCanvas.getContext("2d");
+    document.body.appendChild(previewCanvas);
+
+    function drawBackground() {
+        myctx.fillStyle = 'white';
+        myctx.fillRect(0, 0, drawPan.width, drawPan.height);
+    }
+    drawBackground();
+
+    function setColor(c) {
+        myctx.strokeStyle = c;
+        myctx.fillStyle = c;
+    }
+
+    function startDraw() {
+        flag = true;
+        myctx.beginPath();
+    }
+
+    function moveDraw(e) {
+        if (flag && !isDrawingLine && !isDrawingRectangle && !isDrawingCircle) {
+            let rect = e.target.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+
+            // Clear the preview canvas
+            previewCtx.clearRect(0, 0, drawPan.width, drawPan.height);
+
+            if (isDrawingLine) {
+                previewLine(startX, startY, x, y);
+            } else if (isDrawingRectangle) {
+                previewRectangle(startX, startY, x, y);
+            } else if (isDrawingCircle) {
+                previewCircle(startX, startY, x, y);
+            }
+        }
+    }
+
+    function endDraw() {
+        flag = false;
+    }
+
+    function previewLine(startX, startY, endX, endY) {
+        previewCtx.beginPath();
+        previewCtx.moveTo(startX, startY);
+        previewCtx.lineTo(endX, endY);
+        previewCtx.stroke();
+    }
+
+    function previewRectangle(startX, startY, endX, endY) {
+        let width = endX - startX;
+        let height = endY - startY;
+        previewCtx.beginPath();
+        previewCtx.rect(startX, startY, width, height);
+        previewCtx.stroke();
+    }
+
+    function previewCircle(startX, startY, endX, endY) {
+        let radius = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        previewCtx.beginPath();
+        previewCtx.arc(startX, startY, radius, 0, Math.PI * 2);
+        previewCtx.stroke();
+    }
+    
+    function toggleShape(shape) {
+        isDrawingLine = shape === 'line';
+        isDrawingRectangle = shape === 'rectangle';
+        isDrawingCircle = shape === 'circle';
+
+        // Remove the 'active' class from all buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.classList.remove('active'));
+
+        // Add the 'active' class to the selected button
+        const selectedButton = document.querySelector(`button[data-shape="${shape}"]`);
+        selectedButton.classList.add('active');
+
+        if (isDrawingLine || isDrawingRectangle || isDrawingCircle) {
+            drawPan.addEventListener('mousedown', startPoint);
+            drawPan.addEventListener('mouseup', endPoint);
+        } else {
+            drawPan.removeEventListener('mousedown', startPoint);
+            drawPan.removeEventListener('mouseup', endPoint);
+        }
+    }
+
+    function startPoint(e) {
+        let rect = e.target.getBoundingClientRect();
+        startX = e.clientX - rect.left;
+        startY = e.clientY - rect.top;
+    }
+
+    function endPoint(e) {
+        let rect = e.target.getBoundingClientRect();
+        endX = e.clientX - rect.left;
+        endY = e.clientY - rect.top;
+
+        if (isDrawingLine) {
+            drawLine(startX, startY, endX, endY);
+        } else if (isDrawingRectangle) {
+            drawRectangle(startX, startY, endX, endY);
+        } else if (isDrawingCircle) {
+            drawCircle(startX, startY, endX, endY);
+        }
+    }
+
+    function drawLine(startX, startY, endX, endY) {
+        myctx.beginPath();
+        myctx.moveTo(startX, startY);
+        myctx.lineTo(endX, endY);
+        myctx.stroke();
+    }
+
+    function drawRectangle(startX, startY, endX, endY) {
+        let width = endX - startX;
+        let height = endY - startY;
+        myctx.beginPath();
+        myctx.rect(startX, startY, width, height);
+        myctx.stroke();
+    }
+
+    function drawCircle(startX, startY, endX, endY) {
+        let radius = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        myctx.beginPath();
+        myctx.arc(startX, startY, radius, 0, Math.PI * 2);
+        myctx.stroke();
+    }
+
+    const saveImage = () => {
+        let canvas = document.getElementById("mypaint");
+        let link = document.createElement('a');
+        let fileName = document.getElementById("fileName").value || 'my_drawing.jpg'; // Default name if not provided
+        link.download = fileName.endsWith('.png') ? fileName : fileName + '.jpg';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }
+
+
+    document.getElementById("pansize").onchange = () => {
+        let size = document.getElementById("pansize").value;
+        myctx.lineWidth = size;
+    }
+
+    drawPan.addEventListener('mousedown', () => {
+        startDraw();
+    });
+
+    drawPan.addEventListener('mousemove', (e) => {
+        moveDraw(e);
+    });
+
+    drawPan.addEventListener('mouseup', () => {
+        endDraw();
+    });
+</script>

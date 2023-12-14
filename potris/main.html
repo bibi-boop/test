@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Menu</title>
+    <style>
+        .background {
+            margin : 0;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        video {
+            margin: auto;
+            width: 1250px;
+            height: 850px;
+        }
+
+        .content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .content button {
+            padding: 10px 20px;
+            font-size: 2em;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <video autoplay muted loop id="bgvideo">
+            <source src="/img/screen.mp4" type="video/mp4" id="video">
+            브라우저에서 지원하지 않는 파일 형식입니다.
+        </video>
+        <div class="content">
+            <h1>메뉴 화면</h1><br>
+            <button onclick="start()">시작</button>
+        </div>
+    </div>
+
+    <script>
+        function start() {
+            window.location.href = 'game.html';
+        }
+    </script>
+</body>
+
+</html>

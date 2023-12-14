@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>탱크게임</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #tankgame {
+            border: 1px solid black;
+            background-image: url('/img/pyeong.jpeg');
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="tankgame" width="1000px" height="500px"></canvas>
+    <img id="tankImg" src="/img/me.PNG" style="display: none;" />
+    <img id="tanktarget" src="/img/pig.gif" style="display: none;" />
+    <img id="targetexplode" src="/img/pyeong.jpg" style="display: none" />
+    <img id="bullet" src="/img/tan.png" style="display: none;" />
+    <script>
+        const canvas = document.getElementById("tankgame");
+        const tankImg = document.getElementById("tankImg");
+        const tankTargetImg = document.getElementById("tanktarget");
+        const targetexplode = new Image();
+        const missileImg = document.getElementById("bullet");
+        const ctx = canvas.getContext("2d");
+        const width = canvas.width;
+        const height = canvas.height;
+        const tankWidth = 70;
+        const tankHeight = 70;
+        let tankX = 0;
+        const tankDx = 3;
+        let tankLeftPressed = false;
+        let tankRightPressed = false;
+        let tankCenterX;
+        let tankCenterY;
+        let cannonAngle = Math.PI / 4;
+        const cannonAngleDIF = Math.PI / 60;
+        const cannonLength = tankWidth * Math.sqrt(2);
+        const targetWidth = 70;
+        const targetHeight = 70;
+        const targetX = Math.floor(Math.random() * (500 - targetWidth) + 500);
+        const targetY = Math.floor(Math.random() * (300 - targetWidth));
+        let missileRadius = 10;
+        let missileX;
+        let missileY;
+        let isCharging = false;
+        let isFired = false;
+        let isHitted = false;
+        let gauge = Math.PI;
+        const gaugeDIF = Math.PI / 60;
+        const gaugeBarRadius = 30;
+        let missilePower;
+        let missileDx;
+        let missileDy;
+        const GRAVITY_ACCELERATION = 0.098;
+        const draw = () => {
+            ctx.clearRect(0, 0, width, height);
+            tankCenterX = tankX + 0.5 * tankWidth;
+            tankCenterY = height - 0.5 * tankHeight;
+            if (tankLeftPressed && tankX > 0) {
+                tankX -= tankDx;
+            }
+            if (tankRightPressed && tankX + tankWidth < width) {
+                tankX += tankDx;
+            }
+            if (isCharging && !isFired) {
+                if (gauge < Math.PI * 2) {
+                    gauge += gaugeDIF;
+                }
+                drawGausing();
+            }
+            if (!isFired) {
+                missileX = tankCenterX + cannonLength * Math.cos(cannonAngle);
+                missileY = tankCenterY - cannonLength * Math.sin(cannonAngle);
+            } else {
+                missileDy -= GRAVITY_ACCELERATION;
+                missileX = missileX + missileDx;
+                missileY = missileY - missileDy;
+            }
+            checkMissile();
+            drawTank();
+            if (!isHitted) {
+                drawTarget();
+                drawMissile();
+            }
+        };
+        const drawExplosion = () => {
+            targetexplode.onload = function () {
+                ctx.drawImage(targetexplode, targetX, targetY, targetWidth, targetHeight);
+            };
+            targetexplode.src = "/img/cry.jpg"; // 이미지 경로를 설정해줘야 이미지가 로드됩니다.
+            canvas.style.backgroundImage = 'url("/img/hit.gif")';
+        };
+        const gameWin = () => {
+            if (confirm("명중!! 다시 하겠습니까?")) {
+                canvas.style.clear;
+                location.reload();
+            }
+        }
+        const checkMissile = () => {
+            // canvas 왼쪽, 오른쪽, 아래 벽에 닿으면
+            if (missileX <= 0 || missileX >= width || missileY >= height) {
+                isFired = false;
+            }
+            // target 명중
+            if (
+                missileX >= targetX &&
+                missileX <= targetX + targetWidth &&
+                missileY >= targetY &&
+                missileY <= targetY + targetHeight
+            ) {
+                isHitted = true;
+                clearInterval(start);
+                if (isHitted) {
+                    drawExplosion(); // isHitted가 true일 때 폭발 이미지를 그리도록 호출
+                    setTimeout(gameWin, 700);
+                }
+            }
+        };
+        const drawMissile = () => {
+            ctx.beginPath();
+            ctx.drawImage(bullet, missileX - missileRadius, missileY - missileRadius, missileRadius * 2, missileRadius * 2);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.closePath();
+        };
+        const drawGausing = () => {
+            ctx.beginPath();
+            ctx.arc(
+                tankCenterX,
+                tankCenterY - cannonLength,
+                gaugeBarRadius,
+                Math.PI,
+                gauge,
+                false
+            );
+            ctx.stroke();
+        };
+        const drawTank = () => {
+            //캔버스를 징고 지정된 크기의 새로운 사각형 그리기
+            ctx.clearRect(0, 0, width, height);
+            tankCenterX = tankX + 0.5 * tankWidth;
+            tankCenterY = height - 0.5 * tankHeight;
+            //탱크 포의 두께 설정
+            ctx.lineWidth = 5;
+            //새로운 경로를 시작
+            ctx.beginPath();
+            //선을 그릴 시작점을 설정
+            ctx.moveTo(tankCenterX, tankCenterY);
+            //시작점에서부터 지정된 좌표까지 선을 그립니다.
+            ctx.lineTo(
+                tankCenterX + cannonLength * Math.cos(cannonAngle),
+                tankCenterY - cannonLength * Math.sin(cannonAngle)
+            );
+            //선을 실제로 그리기
+            ctx.stroke();
+            //경로 닫기
+            ctx.closePath();
+
+            // 탱크 이미지 추가하기
+            ctx.drawImage(tankImg, tankX, height - tankHeight, tankWidth, tankHeight);
+        };
+        const drawTarget = () => {
+            ctx.fillRect(targetX, targetY, targetWidth, targetHeight);
+            ctx.fillStyle = "red";
+
+            ctx.drawImage(tankTargetImg, targetX, targetY, targetWidth, targetHeight);
+        };
+        draw();
+        const keydownHandler = event => {
+            if (event.keyCode === 37) {
+                tankLeftPressed = true;
+            } else if (event.keyCode === 39) {
+                tankRightPressed = true;
+            } else if (event.keyCode === 38 && cannonAngle <= Math.PI / 2) {
+                cannonAngle += cannonAngleDIF;
+            } else if (event.keyCode === 40 && cannonAngle >= 0) {
+                cannonAngle -= cannonAngleDIF;
+            } else if (event.keyCode === 32 && !isFired) {
+                isCharging = true;
+            }
+        };
+        const keyupHandler = event => {
+            if (event.keyCode === 37) {
+                tankLeftPressed = false;
+            } else if (event.keyCode === 39) {
+                tankRightPressed = false;
+            } else if (event.keyCode === 32 && !isFired) {
+                isCharging = false;
+                isFired = true;
+                missilePower = gauge * 1.6;
+                missileDx = missilePower * Math.cos(cannonAngle);
+                missileDy = missilePower * Math.sin(cannonAngle);
+                gauge = Math.PI;
+            }
+        };
+        const start = setInterval(draw, 10);
+        document.addEventListener("keydown", keydownHandler, false);
+        document.addEventListener("keyup", keyupHandler, false);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JOIN PAGE</h1>
+    <form action="to_server" method="get" id="joinform">
+        <input type="text" name="userid" id="id" placeholder="id">
+        <input type="button" onclick="idchk()" value="유효성체크"><br>
+        <input type="password" name="pass" id="pass" placeholder="pass">
+        <input type="hidden" id="nochk" value="0"><br>
+        NAME <input type="text" name="username" id="name" placeholder="name"><br>
+        PHONE <input type="text" name="pnum" id="phone" placeholder="000-1111-2222"><br>
+        <input type="button" onclick="save()" value="JOIN">
+    </form>
+</body>
+</html>

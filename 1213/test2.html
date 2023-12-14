@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
+    <title>회원가입</title>
 </head>
 
 <body>
@@ -12,7 +12,11 @@
         아이디<input type="text" name="userid" id="id" placeholder="id">
         <!--name은 변수명-->
         비밀번호<input type="password" name="password" id="pass" placeholder="password">
-        <input type="button" onclick="chk()" value="Save"> <!--submit의 범위도  form태그 자식 -->
+        <input type="hidden" id="nochk" value="0">
+        <!-- id값이 0으로 설정
+        hidden 이런 식으로 변수를 만들 수 가 있다. -->
+        <input type="button" onclick="chk()" value="유효성검사"> <!--submit의 범위도  form태그 자식 -->
+        <input type="button" onclick="save()" value="전송">
         <!--submit은 서버에게 전송, onclick은 자바스크립트 호출-->
         <input type="reset" value="초기화"> <!--reset의 범위는 for태그 자식의 input 객체-->
     </form>
@@ -27,14 +31,37 @@
 </html>
 
 <script>
+    function save() {
+        let chkflag = document.getElementById("nochk").value;
+        if (chkflag === 0) {
+            alert("유효성 검사 먼저 하세요")
+        } else {
+            document.getElementById("joinform").submit();
+        }
+    }
     function chk() {
         // alert("d");
         // 1. userid는 2글자 이상이여야 한다. 유효성 첫번째 조건 가정
+        //var(function까지)가 let 보다 더 많은 범위에서 인식
         let id = document.getElementById("id").value
         if (id.length <= 2) {
             alert("아이디 사용불가")
             return
             //return : 더이상 실행하지 않고 호출한 곳으로 돌아감
+        } else {
+            let a = "!@#$%^&*";
+            let aflag = 1;
+            for (let i = 0; i < id.length; i++) {
+                for (let j = 0; j < a.length; j++) {
+                    if (id.charAt(i) == a.charAt(j)) {
+                        aflag = 0;
+                    }
+                }
+            }
+            if(aflag == 1){
+                alert("아이디는 특수문자가 한개 이상 있어야 합니다.")
+                return
+            }
         }
         // 2. 비밀번호도 2개의 글자 이상이여야 한다.
         let pass = document.getElementById("pass").value
@@ -44,6 +71,7 @@
         }
 
         //submit을 여기서 실행
-        document.getElementById("joinform").submit();
+        document.getElementById("nochk").value
+        alert("쌉가능")
     }
 </script>

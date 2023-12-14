@@ -33,17 +33,12 @@
     <audio id="missileSound">
         <source src="/audio/shoot.mp3" type="audio/mp3">
     </audio>
-    <audio id="explode">
-        <source src="/audio/exploed.mp3" type="audio/mp3">
-    </audio>
     <script>
-        const missileSound = document.getElementById("missileSound");
-        missileSound.load(); // 미리 로드
-        const explode = document.getElementById("explode");
-        missileSound.load(); // 미리 로드
         const canvas = document.getElementById("tankgame");
         const tankImg = document.getElementById("tankImg");
         const tankTargetImg = document.getElementById("tanktarget");
+        const missileSound = document.getElementById("missileSound");
+        missileSound.load(); // 미리 로드
         const targetexplode = new Image();
         const missileImg = document.getElementById("bullet");
         const ctx = canvas.getContext("2d");
@@ -116,7 +111,7 @@
             canvas.style.backgroundImage = 'url("/img/hit.gif")';
         };
         const gameWin = () => {
-            if (confirm("북괴 괴멸!! 다시 하겠습니까?")) {
+            if (confirm("명중!! 다시 하겠습니까?")) {
                 canvas.style.clear;
                 location.reload();
             }
@@ -136,8 +131,6 @@
                 isHitted = true;
                 clearInterval(start);
                 if (isHitted) {
-                    explode.currentTime = 1; // 사운드를 처음부터 재생하기 위해
-                    explode.play();
                     drawExplosion(); // isHitted가 true일 때 폭발 이미지를 그리도록 호출
                     setTimeout(gameWin, 700);
                 }
@@ -146,8 +139,6 @@
         const drawMissile = () => {
             ctx.beginPath();
             ctx.drawImage(bullet, missileX - missileRadius, missileY - missileRadius, missileRadius * 2, missileRadius * 2);
-            ctx.fillStyle = "blue";
-            ctx.fill();
             ctx.closePath();
         };
         const drawGausing = () => {

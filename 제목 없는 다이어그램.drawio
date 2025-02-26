@@ -4,6 +4,78 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="lKcTm5he1GSqPfXgZawS-7" value="집주인" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="460" y="160" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-9" value="등록" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="280" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1;strokeWidth=2;" edge="1" parent="1" source="lKcTm5he1GSqPfXgZawS-7" target="lKcTm5he1GSqPfXgZawS-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="180" as="sourcePoint" />
+            <mxPoint x="450" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-11" value="숙소" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="460" y="400" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1;strokeWidth=2;" edge="1" parent="1" source="lKcTm5he1GSqPfXgZawS-9" target="lKcTm5he1GSqPfXgZawS-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="360" as="sourcePoint" />
+            <mxPoint x="140" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-13" value="회원" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="220" y="400" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-14" value="예약" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="210" y="520" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-15" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="lKcTm5he1GSqPfXgZawS-13" target="lKcTm5he1GSqPfXgZawS-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-16" value="" style="endArrow=classic;html=1;rounded=0;fontStyle=1;strokeWidth=2;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lKcTm5he1GSqPfXgZawS-14" target="lKcTm5he1GSqPfXgZawS-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="290" as="sourcePoint" />
+            <mxPoint x="210" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-17" value="예약내역" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="150" y="620" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-18" value="쿠폰" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="220" y="160" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-19" value="발급" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="210" y="280" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-20" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontStyle=1;strokeWidth=2;" edge="1" parent="1" source="lKcTm5he1GSqPfXgZawS-18" target="lKcTm5he1GSqPfXgZawS-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="550" y="170" as="sourcePoint" />
+            <mxPoint x="550" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-21" value="쿠폰이용내역" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="294" y="620" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-22" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontStyle=1;strokeWidth=2;" edge="1" parent="1" source="lKcTm5he1GSqPfXgZawS-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="250" as="sourcePoint" />
+            <mxPoint x="280" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-23" value="" style="endArrow=classic;html=1;rounded=0;fontStyle=1;strokeWidth=2;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lKcTm5he1GSqPfXgZawS-14" target="lKcTm5he1GSqPfXgZawS-21">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="620" as="sourcePoint" />
+            <mxPoint x="350" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lKcTm5he1GSqPfXgZawS-24" value="회원가입" style="ellipse;whiteSpace=wrap;html=1;fontSize=20;strokeWidth=2;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

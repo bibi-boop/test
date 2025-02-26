@@ -168,7 +168,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="lKcTm5he1GSqPfXgZawS-58" value="NO" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="460" y="590" width="60" height="30" as="geometry" />
+          <mxGeometry x="470" y="590" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="lKcTm5he1GSqPfXgZawS-59" value="1. 회원의 생일 입니까?&lt;div&gt;2.&amp;nbsp; 신규회원입니까?&amp;nbsp;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;fontSize=13;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="190" y="270" width="160" height="70" as="geometry" />

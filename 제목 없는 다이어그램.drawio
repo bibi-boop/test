@@ -133,7 +133,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="lKcTm5he1GSqPfXgZawS-47" value="YES" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="460" y="465" width="60" height="30" as="geometry" />
+          <mxGeometry x="470" y="465" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="lKcTm5he1GSqPfXgZawS-49" value="회원가입" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=20;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="400" y="30" width="140" height="80" as="geometry" />
